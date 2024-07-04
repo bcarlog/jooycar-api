@@ -1,0 +1,39 @@
+import { validate } from "./validation.js"
+import * as tripRepository from "../../repository/tripRepository.js"
+import { calculateBoundingBox, calculateDistance, calculateDuration, calculateOverspeed } from "../../utils/calc.js"
+
+export const createTrip = (readings) => {
+  const { valid, code } = validate(readings)
+  if (!valid) {
+    throw new Error(code)
+  }
+
+  const start = readings.reduce((prev, curr) => prev.time > curr.time ? prev : curr, Infinity)
+  const end = readings.reduce((prev, curr) => prev.time < curr.time ? prev : curr, -Infinity)
+  const duration = calculateDuration(readings)
+  const distance = calculateDistance(readings)
+  const overspeedsCount = calculateOverspeed(readings)
+  const boundingBox = calculateBoundingBox(readings)
+
+  const data = {
+    start: {
+      time: start.time,
+      lat: start.location.lat,
+      lon: start.location.lon,
+      address: '-',
+    },
+    end: {
+      time: end.time,
+      lat: end.location.lat,
+      lon: end.location.lon,
+      address: '-',
+    },
+    duration,
+    distance,
+    overspeedsCount,
+    boundingBox,
+  }
+
+  // console.log(data)
+  return tripRepository.save()
+}

@@ -1,0 +1,2 @@
+export const MIN_5_READINGS = 'MIN_5_READINGS'
+export const TIME_REQUIRED = 'TIME_REQUIRED'
