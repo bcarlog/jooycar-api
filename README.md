@@ -29,7 +29,7 @@ docker run --name jooycar-db -d -p 27017:27017 --network jooycar-network mongo
  * --network jooycar-network: Conecta el contenedor a la red jooycar-network.
 
 ### 3. Construir la imagen Docker para la API
-Construye la imagen Docker para tu aplicación Node.js.
+Construye la imagen Docker.
 
 ```bash
 docker build -t jooycar-api .
@@ -37,7 +37,7 @@ docker build -t jooycar-api .
  * -t jooycar-api: Etiqueta la imagen como jooycar-api.
 
 ### 4. Ejecutar la API en la red Docker
-Ejecuta tu aplicación Node.js en la red Docker que creaste.
+Ejecuta la aplicación en la red Docker que se creo.
 
 ```bash
 docker run --name jooycar-api -p 3000:3000 --network jooycar-network -e MONGO_URL="mongodb://jooycar-db:27017/jooycar" jooycar-api
