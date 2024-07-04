@@ -1,7 +1,13 @@
 import { createTrip, listTrip } from "./service.js";
 
 export const createTripController = async (req, res) => {
-  await createTrip(req.body)
+  const { error } = await createTrip(req.body)
+
+  if (error) {
+    res.status(400).send(error)
+    return
+  }
+
   res.status(201).send('Created!')
 }
 

@@ -5,7 +5,7 @@ import { calculateBoundingBox, calculateDistance, calculateDuration, calculateOv
 export const createTrip = (readings) => {
   const { valid, code } = validate(readings)
   if (!valid) {
-    throw new Error(code)
+    return { error: code }
   }
 
   const start = readings.reduce((prev, curr) => prev.time > curr.time ? prev : curr, Infinity)
