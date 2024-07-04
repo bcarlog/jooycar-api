@@ -34,6 +34,9 @@ export const createTrip = (readings) => {
     boundingBox,
   }
 
-  // console.log(data)
-  return tripRepository.save()
+  return tripRepository.save(data)
+}
+
+export const listTrip = () => {
+  return tripRepository.list()
 }

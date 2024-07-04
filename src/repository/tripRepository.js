@@ -6,5 +6,5 @@ export const save = (data) => {
 }
 
 export const list = () => {
-  return Trip().find()
+  return Trip.find()
 }
