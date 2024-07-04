@@ -1,5 +1,5 @@
 import { MIN_5_READINGS, TIME_REQUIRED } from "../../src/errors/codes"
-import { createTrip } from "../../src/modules/trip/index"
+import { createTrip } from "../../src/modules/trip/service"
 import { calculateBoundingBox, calculateDistance, calculateDuration, calculateOverspeed } from "../../src/utils/calc"
 import { deepClone } from "../../src/utils/obj"
 

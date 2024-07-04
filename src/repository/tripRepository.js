@@ -5,6 +5,6 @@ export const save = (data) => {
   return trip.save()
 }
 
-export const list = () => {
-  return Trip.find()
+export const list = ({ limit, offset }) => {
+  return Trip.find({}).limit(limit).skip(offset)
 }

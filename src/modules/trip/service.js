@@ -37,6 +37,7 @@ export const createTrip = (readings) => {
   return tripRepository.save(data)
 }
 
-export const listTrip = () => {
-  return tripRepository.list()
+export const listTrip = (pagination) => {
+  const { limit = 10, offset = 0 } = pagination || {}
+  return tripRepository.list({ limit, offset })
 }
