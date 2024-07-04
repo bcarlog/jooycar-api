@@ -6,6 +6,7 @@ export const createTripController = async (req, res) => {
 }
 
 export const listTripController = async (req, res) => {
-  const trips = await listTrip()
+  const { start_gte, start_lte, distance_gte, limit, offset } = req.query
+  const trips = await listTrip({ start_gte, start_lte, distance_gte }, { limit, offset })
   res.status(200).send(trips)
 }
