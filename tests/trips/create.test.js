@@ -55,15 +55,16 @@ describe('create trips', () => {
 
   it('should return an error when 4 readings', () => {
     const fourReadings = readings.slice(0, 4)
-    
-    expect(() => createTrip(fourReadings)).toThrow(MIN_5_READINGS)
+    const result = createTrip(fourReadings)
+    expect(result.error).toBe(MIN_5_READINGS)
   })
 
   it('should return an error if time doesnt exists in readings', () => {
     const readingsClone = deepClone(readings)
     delete readingsClone[0].time
     
-    expect(() => createTrip(readingsClone)).toThrow(TIME_REQUIRED)
+    const result = createTrip(readingsClone)
+    expect(result.error).toBe(TIME_REQUIRED)
   })
 
   describe('calculate trip time', () => {
@@ -327,10 +328,10 @@ describe('create trips', () => {
 
     it('should calculate bounding box', () => {
       expect(calculateBoundingBox(readings)).toEqual([
-        { lat: -33.580462, lon: -70.567177 },
-        { lat: -33.580432, lon: -70.567147 },
-        { lat: -33.580432, lon: -70.567147 },
-        { lat: -33.580433, lon: -70.567144 },
+        { lat: -33.580158, lon: -70.568502 },
+        { lat: -33.580005, lon: -70.568502 },
+        { lat: -33.580005, lon: -70.566408 },
+        { lat: -33.580158, lon: -70.566408 },
       ])
     })
   })
